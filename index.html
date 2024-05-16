@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eisenhower-Box: Task Manager</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="header">Eisenhower-Box: Task Manager</div>
+    <div class="main">
+      <div class="time" id="time"></div>
+      <div class="taskbar">
+        <div class="tasks">
+          <ul class="task-list" id="task-list">
+            <li>task one <input type="checkbox" value="done" /></li>
+            <li>task two <input type="checkbox" value="done" /></li>
+            <li>task three <input type="checkbox" value="done" /></li>
+            <li>task four <input type="checkbox" value="done" /></li>
+          </ul>
+        </div>
+        <div class="new-task">
+          <form id="new-task">
+            <input type="text" name="task" placeholder="enter task" />
+            <input type="number" name="priority" placeholder="00" />
+            <button type="submit">ADD</button>
+          </form>
+        </div>
+      </div>
+      <div class="info-section">
+        <h1>Lorem ipsum dolor sit amet.</h1>
+        <ul>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Lorem, ipsum dolor.</li>
+          <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
+          <li>Lorem, ipsum.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <p>Download Source Code</p>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
