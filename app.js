@@ -2,6 +2,7 @@ const taskList = document.getElementById("task-list");
 const newTaskForm = document.getElementById("new-task");
 const timeField = document.getElementById("time");
 const clearAll = document.getElementById("clear-task");
+const errorElement = document.querySelector(".error-message");
 
 let taskArray = JSON.parse(localStorage.getItem("tasks")) || [];
 
@@ -35,17 +36,17 @@ newTaskForm.addEventListener("submit", (evt) => {
       addTaskToDOM(task);
     }
   } else {
-    alert("Not allowed to add more than 4 tasks");
+    showError("Not allowed to add more than 4 tasks");
   }
 });
 
 function formValidator(task, priority) {
   if (task === "") {
-    alert("Task description is required");
+    showError("Task description is required");
     return false;
   }
   if (isNaN(priority) || priority < 1 || priority > 4) {
-    alert("Invalid priority");
+    showError("Invalid priority");
     return false;
   }
   return true;
@@ -113,4 +114,26 @@ function RefreshTaskList() {
 
   // Re-populate the task list with the updated tasks
   populateTaskList();
+}
+
+// function form download file
+
+document.querySelector(".download").addEventListener("click", () => {
+  const zipUrl = "EisenHower-Box.zip";
+
+  const downloadLink = document.createElement("a");
+  downloadLink.href = zipUrl;
+  downloadLink.setAttribute("download", "EisenHower-Box");
+
+  downloadLink.click();
+
+  downloadLink.remove();
+});
+
+function showError(msg) {
+  errorElement.textContent = msg;
+  errorElement.style.visibility = "visible";
+  setTimeout(() => {
+    errorElement.style.visibility = "hidden";
+  }, 2000);
 }

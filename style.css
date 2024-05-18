@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+:root {
+    --midnight-blue: #2c3e50;
+    --sky-blue: #3498db;
+    --soft-white: #ecf0f1;
+    --slate-grey: #95a5a6;
+    --turquoise: #1abc9c;
+    --emerald: #2ecc71;
+    --alizarin: #e74c3c;
+}
+
 body {
     font-size: 16px;
     display: flex;
@@ -11,6 +21,8 @@ body {
     align-items: center;
     height: 100vh;
     padding: 8px;
+    color: var(--midnight-blue);
+    background-color: var(--soft-white);
 }
 
 @media only screen and (min-width: 400px) {
@@ -58,6 +70,8 @@ body {
         font-size: 2rem;
         font-weight: 700;
         width: 100%;
+        color: var(--soft-white);
+        background-color: var(--midnight-blue);
     }
 
     .main {
@@ -78,6 +92,7 @@ body {
         /* border: 1px solid green; */
         padding: 0.5em;
         margin-bottom: 2em;
+        background-color: var(--slate-grey);
     }
 
     .tasks h1 {
@@ -92,15 +107,20 @@ body {
         padding: 0.2em;
         border: none;
         border-radius: 8px;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
+        cursor: pointer;
     }
 
     .tasks ul {
         padding: 1.5em;
         min-height: 15em;
+        font-weight: 600;
     }
 
     .tasks ul li {
         padding: 0.5em;
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.199);
     }
 
     .task-list li {
@@ -126,6 +146,10 @@ body {
         padding: 0.2em;
         border: none;
         border-radius: 8px;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
+        cursor: pointer;
+
     }
 
     form#new-task input {
@@ -139,7 +163,7 @@ body {
     .error-message {
         padding-left: 0.4em;
         visibility: hidden;
-        color: red;
+        color: var(--alizarin);
     }
 
     .info-section {
@@ -164,6 +188,17 @@ body {
         justify-content: end;
     }
 
+    .footer button {
+        border: none;
+        border-radius: 8px;
+        padding: 0.2em;
+        background-color: #fff;
+        cursor: pointer;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
+
+    }
+
 }
 
 @media only screen and (max-width: 400px) {
@@ -184,6 +219,8 @@ body {
     }
 
     .header {
+        background-color: var(--midnight-blue);
+        color: var(--soft-white);
         font-size: 2rem;
         padding: 0.2em;
     }
@@ -203,9 +240,11 @@ body {
 
     .taskbar {
         /* border: 2px solid red; */
-        padding: 0.2em;
+        padding: 1em 0.5em 0.5em 0.5em;
         display: flex;
         flex-direction: column;
+        background-color: var(--slate-grey);
+        margin-bottom: 1em;
     }
 
     .tasks h1 {
@@ -226,6 +265,8 @@ body {
         padding: 0.2em;
         border: none;
         border-radius: 8px;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
     }
 
     .tasks ul {
@@ -236,6 +277,7 @@ body {
 
     .tasks ul li {
         padding: 0.5em;
+        border-bottom: 1.5px solid rgba(0, 0, 0, 0.199);
     }
 
     .task-list li {
@@ -257,6 +299,8 @@ body {
         padding: 0.2em;
         border: none;
         border-radius: 8px;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
     }
 
     form#new-task input {
@@ -274,6 +318,7 @@ body {
         color: red;
         visibility: hidden;
         text-align: center;
+        font-weight: 700;
     }
 
     .info-section {
@@ -303,5 +348,15 @@ body {
         align-items: center;
         justify-content: center;
 
+    }
+
+    .footer button {
+        border: none;
+        background-color: #fff;
+        cursor: pointer;
+        color: var(--soft-white);
+        background-color: var(--sky-blue);
+        border-radius: 8px;
+        padding: 0.2em;
     }
 }
