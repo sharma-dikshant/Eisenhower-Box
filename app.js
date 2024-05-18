@@ -4,7 +4,6 @@ const timeField = document.getElementById("time");
 const clearAll = document.getElementById("clear-task");
 
 let taskArray = JSON.parse(localStorage.getItem("tasks")) || [];
-console.log(taskList);
 
 // Function to update time
 window.addEventListener("DOMContentLoaded", () => {
@@ -34,7 +33,6 @@ newTaskForm.addEventListener("submit", (evt) => {
     if (formValidator(task, priority)) {
       saveTask(task, priority);
       addTaskToDOM(task);
-      console.log(taskArray);
     }
   } else {
     alert("Not allowed to add more than 4 tasks");
@@ -56,13 +54,13 @@ function formValidator(task, priority) {
 function addTaskToDOM(task) {
   const newTaskElement = document.createElement("li");
   newTaskElement.innerHTML = `
-    ${task} <input type="checkbox" value="done" />
+    <span>${task}</span> <input type="checkbox" value="done" />
   `;
   taskList.appendChild(newTaskElement);
 }
 
 function saveTask(task, priority) {
-  taskArray.push({ task, priority });
+  taskArray.push({ task, priority, status: "unchecked" });
   localStorage.setItem("tasks", JSON.stringify(taskArray));
 }
 
@@ -74,8 +72,29 @@ function populateTaskList() {
     .forEach((taskObject) => {
       const newTaskElement = document.createElement("li");
       newTaskElement.innerHTML = `
-        ${taskObject.task} <input type="checkbox" value="done" />
+        <span>${taskObject.task}</span> <input type="checkbox" value="done" />
       `;
       taskList.appendChild(newTaskElement);
     });
 }
+
+// updating the stutus of task whose checkbox is checked
+
+document.getElementById("updatetasklist").addEventListener("click", () => {
+  const checkboxes = document.querySelectorAll(
+    '#task-list li input[type="checkbox"]'
+  );
+
+  checkboxes.forEach((box) => {
+    if (box.checked) {
+      const taskText = box.previousElementSibling.textContent.trim();
+      const index = taskArray.findIndex((task) => task.task === taskText);
+
+      if (index !== -1) {
+        taskArray[index].status = "checked";
+      }
+    }
+  });
+
+  localStorage.setItem("tasks", JSON.stringify(taskArray));
+});
