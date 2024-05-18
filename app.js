@@ -1,77 +1,81 @@
 const taskList = document.getElementById("task-list");
-const newTask = document.getElementById("new-task");
+const newTaskForm = document.getElementById("new-task");
 const timeField = document.getElementById("time");
+const clearAll = document.getElementById("clear-task");
 
-let taskArray = [
-  {
-    task: "task 1",
-    priority: 1,
-  },
-  {
-    task: "task 2",
-    priority: 2,
-  },
-  {
-    task: "task 3",
-    priority: 3,
-  },
-  {
-    task: "task 4",
-    priority: 4,
-  },
-];
-
+let taskArray = JSON.parse(localStorage.getItem("tasks")) || [];
 console.log(taskList);
 
-// function to update time
+// Function to update time
+window.addEventListener("DOMContentLoaded", () => {
+  setInterval(() => {
+    const currentTime = new Date().toLocaleTimeString();
+    timeField.textContent = currentTime;
+  }, 1000);
 
-window.addEventListener(
-  "DOMContentLoaded",
-  (async function () {
-    setInterval(() => {
-      const currentTime = new Date().toLocaleTimeString();
-      timeField.textContent = currentTime;
-    }, 1000);
-  })()
-);
+  populateTaskList();
+});
 
-newTask.addEventListener("submit", (evt) => {
+// clearing all tasks
+
+clearAll.addEventListener("click", () => {
+  localStorage.clear();
+  taskList.innerHTML = "";
+});
+
+newTaskForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
-  let taskCount = taskArray.length + 1;
-  if (taskCount <= 4) {
-    let task = document.querySelector(`.new-task input[name = "task"]`).value;
+  if (taskArray.length < 4) {
+    let task = document.querySelector(".new-task input[name='task']").value;
     let priority = document.querySelector(
-      `.new-task input[name="priority"]`
+      ".new-task input[name='priority']"
     ).value;
 
     if (formValidator(task, priority)) {
-      taskArray.push({ task: task, priority: priority });
+      saveTask(task, priority);
+      addTaskToDOM(task);
       console.log(taskArray);
     }
   } else {
-    alert("Not allowed to add more than 4 task");
+    alert("Not allowed to add more than 4 tasks");
   }
 });
 
 function formValidator(task, priority) {
   if (task === "") {
-    alert("task description is gitrequired");
+    alert("Task description is required");
     return false;
   }
   if (isNaN(priority) || priority < 1 || priority > 4) {
-    alert("invalid priority");
+    alert("Invalid priority");
     return false;
-  } else {
-    return true;
   }
+  return true;
 }
 
-// populating tasks
-
-taskArray.forEach((task) => {
+function addTaskToDOM(task) {
   const newTaskElement = document.createElement("li");
   newTaskElement.innerHTML = `
-    ${task.task} <input type="checkbox" value="done" />
-    `;
+    ${task} <input type="checkbox" value="done" />
+  `;
   taskList.appendChild(newTaskElement);
-});
+}
+
+function saveTask(task, priority) {
+  taskArray.push({ task, priority });
+  localStorage.setItem("tasks", JSON.stringify(taskArray));
+}
+
+function populateTaskList() {
+  taskList.innerHTML = "";
+  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+  savedTasks
+    .sort((a, b) => a.priority - b.priority)
+    .forEach((taskObject) => {
+      const newTaskElement = document.createElement("li");
+      newTaskElement.innerHTML = `
+        ${taskObject.task} <input type="checkbox" value="done" />
+      `;
+      taskList.appendChild(newTaskElement);
+    });
+}
