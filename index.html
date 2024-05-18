@@ -7,40 +7,96 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="header">Eisenhower-Box: Task Manager</div>
-    <div class="main">
-      <div class="time" id="time"></div>
-      <div class="taskbar">
-        <div class="tasks">
-          <h1>
-            <span>Today's Tasks</span>
-            <button id="clear-task" class="clear-task">Clear All</button>
-            <button id="updatetasklist">Update</button>
-          </h1>
-          <ul class="task-list" id="task-list" style="list-style: none;"></ul>
+    <div class="container">
+      <div class="header">Eisenhower-Box: Task Manager</div>
+      <div class="main">
+        <div class="time" id="time">Time</div>
+        <div class="taskbar">
+          <div class="tasks">
+            <h1>
+              <span>Today's Tasks</span>
+              <button id="clear-task" class="clear-task">Clear All</button>
+              <button id="updatetasklist">Update</button>
+            </h1>
+            <ul class="task-list" id="task-list" style="list-style: none"></ul>
+          </div>
+          <div class="new-task">
+            <form id="new-task">
+              <input type="text" name="task" placeholder="enter task" />
+              <input type="number" name="priority" placeholder="00" />
+              <button type="submit">ADD</button>
+            </form>
+            <div class="error-message">error dhfathoiwerh;</div>
+          </div>
         </div>
-        <div class="new-task">
-          <form id="new-task">
-            <input type="text" name="task" placeholder="enter task" />
-            <input type="number" name="priority" placeholder="00" />
-            <button type="submit">ADD</button>
-          </form>
+        <div class="info-section">
+          <h1>Task Management Instructions</h1>
+          <ul>
+            <li>Enter up to 4 tasks and assign each a priority.</li>
+            <li>Tasks are automatically sorted by priority.</li>
+            <li>
+              Mark the checkbox for a completed task and click the "Update"
+              button to refresh the list and remove completed tasks.
+            </li>
+            <li>
+              Click the "Clear All" button to remove all tasks from the list.
+            </li>
+          </ul>
         </div>
       </div>
-      <div class="info-section">
-        <h1>Lorem ipsum dolor sit amet.</h1>
+      <div class="footer">
+        <p>Download Source Code</p>
+      </div>
+    </div>
+    <div class="more">
+      <div class="about-app">
+        <h2>About the App</h2>
         <ul>
-          <li>Lorem ipsum dolor sit amet.</li>
-          <li>Lorem, ipsum dolor.</li>
-          <li>Lorem ipsum dolor, sit amet consectetur adipisicing elit.</li>
-          <li>Lorem, ipsum.</li>
+          <li>
+            <strong>Efficient Task Management:</strong>
+            Manage up to 4 tasks daily with assigned priorities.
+          </li>
+          <li>
+            <strong>Dynamic Updates:</strong>
+            Easily mark tasks as completed and update the list in real-time.
+          </li>
+          <li>
+            <strong>Prioritized Sorting:</strong>
+            Tasks are automatically organized based on their priority levels.
+          </li>
+          <li>
+            <strong>Simple Controls:</strong>
+            Clear all tasks with a single click using the "Clear All" button.
+          </li>
+        </ul>
+      </div>
+      <div class="tips">
+        <h2>Tips for Effective Task Management</h2>
+        <ul>
+          <li>
+            <strong>Prioritize Wisely:</strong>
+            Assign higher priority to tasks that are most important and urgent.
+          </li>
+          <li>
+            <strong>Stay Focused:</strong>
+            Concentrate on one task at a time to enhance productivity.
+          </li>
+          <li>
+            <strong>Review Regularly:</strong>
+            At the end of the day, review your task list and carry over
+            unfinished tasks.
+          </li>
+          <li>
+            <strong>Set Realistic Goals:</strong>
+            Keep your daily task list manageable to avoid feeling overwhelmed.
+          </li>
+          <li>
+            <strong>Use Downtime Efficiently:</strong>
+            Utilize any free time to prepare for upcoming tasks.
+          </li>
         </ul>
       </div>
     </div>
-    <div class="footer">
-      <p>Download Source Code</p>
-    </div>
-
     <script src="app.js"></script>
   </body>
 </html>

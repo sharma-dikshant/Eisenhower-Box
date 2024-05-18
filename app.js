@@ -97,4 +97,20 @@ document.getElementById("updatetasklist").addEventListener("click", () => {
   });
 
   localStorage.setItem("tasks", JSON.stringify(taskArray));
+  RefreshTaskList();
 });
+
+function RefreshTaskList() {
+  let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+  // Filter out tasks with the status "checked"
+  taskArray = savedTasks.filter(
+    (task) => task !== null && task.status !== "checked"
+  );
+
+  // Save the updated task array back to localStorage
+  localStorage.setItem("tasks", JSON.stringify(taskArray));
+
+  // Re-populate the task list with the updated tasks
+  populateTaskList();
+}
