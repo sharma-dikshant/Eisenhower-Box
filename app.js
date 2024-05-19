@@ -26,17 +26,19 @@ clearAll.addEventListener("click", () => {
 newTaskForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
   if (taskArray.length < 4) {
-    let task = document.querySelector(".new-task input[name='task']").value;
-    let priority = document.querySelector(
-      ".new-task input[name='priority']"
-    ).value;
+    let task = document.querySelector(".new-task input[name='task']");
+    let priority = document.querySelector(".new-task input[name='priority']");
 
-    if (formValidator(task, priority)) {
-      saveTask(task, priority);
-      addTaskToDOM(task);
+    if (formValidator(task.value, priority.value)) {
+      saveTask(task.value, priority.value);
+      addTaskToDOM(task.value);
+      task.value = "";
+      priority.value = "";
     }
   } else {
     showError("Not allowed to add more than 4 tasks");
+    task.value = "";
+    priority.value = "";
   }
 });
 
